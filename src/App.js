@@ -3,6 +3,16 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super() //makes sure constructor for Component class is called
+    this.state = {
+      todos: [
+        {id: 1, name: 'Learn Javascript', isComplete: false},
+        {id: 2, name: 'Make a good React App', isComplete: true},
+        {id: 3, name: 'Implement React in Rails', isComplete: false}
+      ]
+    }
+  }
   render() {
     return (
       <div className="App">
@@ -16,9 +26,10 @@ class App extends Component {
           </form>
           <div className="Todo-List">
             <ul>
-              <li><input type="checkbox"/>Learn JS</li>
-              <li><input type="checkbox"/>Learn JS</li>
-              <li><input type="checkbox"/>Learn JS</li>
+              {this.state.todos.map(todo =>
+                <li key={todo.id}>
+                  <input type="checkbox" defaultChecked={todo.isComplete}/> {todo.name}
+                </li>)}
             </ul>
           </div>
         </div>
